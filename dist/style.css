@@ -1,0 +1,11 @@
+/*!**********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./client/App/App.css ***!
+  \**********************************************************************/
+.App {
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+    color: blue;
+}
