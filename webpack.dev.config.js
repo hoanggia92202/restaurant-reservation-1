@@ -14,7 +14,7 @@ module.exports = {
         },
         devMiddleware: {
             writeToDisk: true
-        }
+        },
     },
     module: {
         rules: [
