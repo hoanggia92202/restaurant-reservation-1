@@ -25,7 +25,7 @@ function App() {
 
   return (
    <>
-    <h1 className="App">Welcome to React 78</h1>
+    <h1 className="App">Welcome to React 18</h1>
     <h4>{connectStatus}</h4>
    </>
   );

@@ -8,6 +8,14 @@ module.exports = {
         path: path.resolve(__dirname, './dist')
     },
     mode: 'development',
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname)
+        },
+        devMiddleware: {
+            writeToDisk: true
+        }
+    },
     module: {
         rules: [
             {
