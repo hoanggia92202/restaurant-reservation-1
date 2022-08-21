@@ -12,7 +12,6 @@ function App() {
   /** It should display "Connnect to backend successful..." **/
   async function connect() {
     try{
-      console.log("process env: ", process.env.NODE_ENV);
       const response = await fetch("/test");
       if(response.status === 200){
         const data = await response.json();
