@@ -8,13 +8,14 @@ function App() {
     connect()
   },[]);
 
+  /** This function is use to test connection when **/
+  /** deploy on Heroku. It should display "Connnect to backend successful..." **/
   async function connect() {
     try{
       const response = await fetch("/test");
       if(response.status === 200){
         const data = await response.json();
         setConnectStatus(data.message);
-        console.log("res", data.message)
       }
     }catch(error){
       console.log("Error: ", error)
