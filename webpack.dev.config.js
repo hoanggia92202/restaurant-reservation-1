@@ -1,3 +1,4 @@
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 const webpack = require('webpack')
 
@@ -35,19 +36,7 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({
             process: 'process/browser',
-        })
+        }),
+        new CleanWebpackPlugin()
     ]
 }
-
-/*
-devServer: {
-        port: 3000,
-        static: {
-            directory: path.resolve(__dirname)
-        },
-        devMiddleware: {
-            index: 'index.html',
-            writeToDisk: true
-        }
-    },
-*/

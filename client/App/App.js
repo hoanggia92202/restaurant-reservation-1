@@ -24,7 +24,7 @@ function App() {
 
   return (
    <>
-    <h1 className="App">Welcome to React 599</h1>
+    <h1 className="App">Welcome to React 1239</h1>
     <h4>{connectStatus}</h4>
    </>
   );
