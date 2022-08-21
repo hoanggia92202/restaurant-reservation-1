@@ -3,7 +3,7 @@ import "./App.css";
 
 function App() {
 
-  const [connectStatus,setConnectStatus] = useState("connecting...");
+  const [connectStatus, setConnectStatus] = useState("connecting...");
   useEffect(() => {
     connect()
   },[]);
