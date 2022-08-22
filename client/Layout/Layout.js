@@ -1,6 +1,6 @@
 import React from "react";
 import Menu from "./Menu";
-//import Routes from "./Routes";
+import Routes from "./Routes";
 
 import "./Layout.css";
 
@@ -12,7 +12,7 @@ function Layout() {
           <Menu />
         </div>
         <div className="w-100">
-          Routes
+          <Routes />
         </div>
       </div>
     </div>

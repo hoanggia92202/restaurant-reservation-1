@@ -1,0 +1,35 @@
+.finishAlert {
+    width: 30vw;
+    min-height: 15vh;
+    background-color: rgb(247, 156, 156);
+    text-align: left;
+    position: absolute;
+    z-index: 100;
+    display: none;
+}
+
+.showFinishAlert {
+    display: inline;
+}
+
+.cancelAlert {
+    width: 30vw;
+    min-height: 15vh;
+    background-color: rgb(247, 156, 156);
+    text-align: left;
+    position: absolute;
+    z-index: 100;
+    display: none;
+}
+
+.showCancelAlert{
+    display: inline;
+}
+
+.dashboard {
+    font-size: 1.8rem;
+}
+
+.reservation {
+    font-size: 1rem;
+}
