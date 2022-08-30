@@ -1,0 +1,18 @@
+.hideCancelAlert {
+    width: 30vw;
+    min-height: 15vh;
+    background-color: rgb(247, 156, 156);
+    text-align: left;
+    position: absolute;
+    z-index: 100;
+    display: none;
+}
+
+.showCancelAlert{
+    display: inline;
+}
+
+.input {
+    font-size: .6rem;
+    width: 15rem;
+}
