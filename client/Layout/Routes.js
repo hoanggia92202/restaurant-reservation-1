@@ -6,7 +6,7 @@ import Search from "../Search/index";
 //import NotFound from "./NotFound";
 import { today } from "../utils/date-time";
 //import NewReservation from "../Reservation/NewReservation/NewReservation";
-//import NewTable from "../NewTable/index";
+import NewTable from "../NewTable/index";
 //import Seat from "../Seat/index";
 //import Edit from "../Reservation/EditReservation/EditReservation";
 
@@ -17,7 +17,7 @@ function Routes() {
         <Redirect to={"/dashboard"} />
       </Route>
       <Route exact={true} path="/tables/new">
-        NewTable
+        <NewTable />
       </Route>
       <Route exact={true} path="/search">
         <Search />
