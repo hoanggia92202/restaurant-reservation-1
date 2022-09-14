@@ -34,6 +34,6 @@
 - [ X ] Dashboard
 - [ X ] Search
 - [   ] New Reservation
-- [   ] New Table
+- [ X ] New Table
 - [   ] PostgreSQL
 - [   ] Refactoring
