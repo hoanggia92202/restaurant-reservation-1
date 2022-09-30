@@ -5,7 +5,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import Search from "../Search/index";
 //import NotFound from "./NotFound";
 import { today } from "../utils/date-time";
-//import NewReservation from "../Reservation/NewReservation/NewReservation";
+import NewReservation from "../Reservation/NewReservation/NewReservation";
 import NewTable from "../NewTable/index";
 //import Seat from "../Seat/index";
 //import Edit from "../Reservation/EditReservation/EditReservation";
@@ -23,7 +23,7 @@ function Routes() {
         <Search />
       </Route>
       <Route exact={true} path="/reservations/new">
-        NewReservation
+      <NewReservation />
       </Route>
       <Route exact={true} path="/reservations/:reservation_id/edit">
         Edit
