@@ -33,7 +33,7 @@
 
 - [ X ] Dashboard
 - [ X ] Search
-- [   ] New Reservation
+- [ X  ] New Reservation
 - [ X ] New Table
 - [   ] PostgreSQL
 - [   ] Refactoring
