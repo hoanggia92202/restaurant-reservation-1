@@ -1,69 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { previous, next } from "../utils/date-time";
 import { useHistory } from "react-router-dom";
-import { API_BASE_URL } from "../utils/api";
-//import { tablesUrl, reservationUrl } from "./api";
 import RenderTable from "./RenderTable";
 import RenderReservation from "./RenderReservation";
 import "./Dashboard.css";
-import {
-  handleToday,
-  handlePreviousDay,
-  handleNextDay,
-  seatFinish,
-  confirmSeatFinish,
-  cancelSeatFinish,
-  confirmCancelReservation,
-  undoCancelReservation,
-  cancelReservation,
-} from "./Functions";
 
 function Dashboard({ date }) {
-
   const [reservations, setReservations] = useState([]);
   const [tables, setTables] = useState([]);
   const history = useHistory();
   const [today, setToday] = useState("");
-  const [previousDay, setPreviousDay] = useState("");
-  const [nextDay, setNextDay] = useState("");
   const [dashboardDate, setDashboardDate] = useState("");
 
-  //useEffect(loadDashboard, [today]);
-  //useEffect(loadTables, []);
-
-  async function loadDashboard() {
-    
-    history.push(`/dashboard?date=${date}`);
-    try {
-      console.log("process.env 1>>>", process.env, API_BASE_URL)
-      const result = await fetch(`/reservations?date=${date}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      const { data } = await result.json();
-      if (data) {
-        setReservations(data);
-        setToday(date);
-        setPreviousDay(date);
-        setNextDay(date);
-        setDashboardDate(date);
-      }
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if(today === ""){
+      setToday(date);
     }
+    setDashboardDate(today);
+    history.push(`/dashboard?date=${today}`);
+  },[today]);
+
+  const handleToday = () => {
+    setToday(date);
   }
 
-  function loadTables() {
-    
-    fetch(`https://polo99.herokuapp.com/tables`)
-      .then((data) => {
-        console.log("process.env 2>>>", process.env)
-        data.json().then((result) => {
-          console.log("process.env 3>>>", process.env)
-          setTables(result.data)
-        });
-      })
-      .catch((error) => console.log(error));
+  const handleNextDay = async () => {
+    setToday(next(today))
+  };
+  
+  const handlePreviousDay = () => {
+    setToday(previous(today));
   }
 
   return (
@@ -88,16 +54,11 @@ function Dashboard({ date }) {
             </thead>
             <tbody>
               <RenderReservation
-                loadDashboard={loadDashboard}
                 reservations={reservations}
-                cancelReservation={cancelReservation}
-                confirmCancelReservation={confirmCancelReservation}
-                undoCancelReservation={undoCancelReservation}
                 history={history}
               />
             </tbody>
           </table>
-
           <table className="table table-sm table-info table-hover table-responsive-sm col-lg-5 m-3">
             <thead>
               <tr>
@@ -112,53 +73,27 @@ function Dashboard({ date }) {
               <RenderTable
                 history={history}
                 tables={tables}
-                seatFinish={seatFinish}
-                confirmSeatFinish={confirmSeatFinish}
-                cancelSeatFinish={cancelSeatFinish}
               />
             </tbody>
           </table>
         </div>
-
         <div className="text-center">
           <button
-            onClick={() =>
-              handlePreviousDay(
-                previous,
-                previousDay,
-                setReservations,
-                setPreviousDay,
-                setNextDay,
-                history,
-                setDashboardDate
-              )
-            }
+            onClick={() => handlePreviousDay()}
             type="button"
             className="btn btn-success col-8 col-sm-3 col-md-2 ml-auto mr-auto mr-sm-3 mb-2"
           >
             Previous
           </button>
-
           <button
-            onClick={() => handleToday(loadDashboard)}
+            onClick={() => handleToday()}
             type="button"
             className="btn btn-danger col-8 col-sm-3 col-md-2 ml-auto mr-auto mr-sm-3 mb-2"
           >
             Today
           </button>
-
           <button
-            onClick={() =>
-              handleNextDay(
-                next,
-                nextDay,
-                setReservations,
-                setNextDay,
-                setPreviousDay,
-                history,
-                setDashboardDate
-              )
-            }
+            onClick={() => handleNextDay()}
             type="button"
             className="btn btn-warning col-8 col-sm-3 col-md-2 ml-auto mr-auto mb-2"
           >

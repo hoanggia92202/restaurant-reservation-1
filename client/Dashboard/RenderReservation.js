@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 
 const RenderReservation = ({
   reservations,
-  cancelReservation,
-  confirmCancelReservation,
-  undoCancelReservation,
+ 
   history,
-  loadDashboard,
+  
 }) => {
+  const cancelReservation = (reservation_id) => {
+    const cancel = document.getElementById(reservation_id);
+    cancel.classList.add("showCancelAlert");
+  };
+
   if (reservations.length > 0) {
     return reservations.map((reservation) => {
       let myReservevation = `reservations/${reservation.reservation_id}/seat?people=${reservation.people}`;
@@ -65,7 +68,7 @@ const RenderReservation = ({
                   confirmCancelReservation(
                     reservation.reservation_id,
                     history,
-                    loadDashboard
+                    
                   )
                 }
               >
