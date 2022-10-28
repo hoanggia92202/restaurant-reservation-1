@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Search.css";
 
-const Form = ({ handleMobileNumber, handleSearch, mobileNumber }) => {
+const Search = () => {
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+
   return (
-    <div>
+    <div className="container alert-primary p-4">
       <form className="container pt-5 text-center">
         <input
           className="input-lg mb-4 w-25"
@@ -24,4 +28,4 @@ const Form = ({ handleMobileNumber, handleSearch, mobileNumber }) => {
   );
 };
 
-export default Form;
+export default Search;
