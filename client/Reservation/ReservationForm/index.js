@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { handleCancel, onChangeHandler, handleSubmit } from "./Functions";
-import Form from "./Form";
 
 import {
   TuesdayAlert,
@@ -24,6 +22,11 @@ const NewReservation = ({ customerInfo = {} }) => {
   const [beforeHours, setBeforeHours] = useState(false);
   const [afterHours, setAfterHours] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
+
+  const year = new Date().getFullYear();
+  const month = (new Date().getMonth() + 1).toString().padStart(2, "0");
+  const day = new Date().getDate().toString().padStart(2, "0");
+  const date = year + "-" + month + "-" + day;
 
   const history = useHistory();
 
@@ -48,50 +51,183 @@ const NewReservation = ({ customerInfo = {} }) => {
     customerInfo.reservation_id,
   ]);
 
+  const reservationIsAllowed = (reservationDate, reservationTime) => {
+    if (
+      reservationDate >= date &&
+      new Date(reservationDate).getDay() !== 1 &&
+      reservationTime > "10:30" &&
+      reservationTime < "21:30"
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsTuesday(false);
+    setIsPastDate(false);
+    setBeforeHours(false);
+    setAfterHours(false);
+  
+    if (reservationTime < "10:30") {
+      setBeforeHours(true);
+    }
+    if (reservationTime > "21:30") {
+      setAfterHours(true);
+    }
+    if (reservationDate < date) {
+      setIsPastDate(true);
+    }
+    if (new Date(reservationDate).getDay() === 1) {
+      setIsTuesday(true);
+    }
+  
+    if (reservationIsAllowed(reservationDate, reservationTime)) {
+      let reservation = {
+        first_name: firstName,
+        last_name: lastName,
+        mobile_number: mobileNumber,
+        reservation_date: reservationDate,
+        reservation_time: reservationTime,
+        people: Number(people),
+      };
+      const response = isUpdate
+        ? updateReservation(reservation, reservationID)
+        : createReservation(reservation);
+  
+      if (response) {
+        history.goBack();
+      }
+    }
+  };
+
+  const handleCancel = () => {
+    history.push("/dashboard");
+  };
+
+  const onChangeHandler = (event) => {
+    switch (event.target.name) {
+      case "first_name":
+        setFirstName(event.target.value);
+        break;
+      case "last_name":
+        setLastName(event.target.value);
+        break;
+      case "mobile_number":
+        setMobileNumber(event.target.value);
+        break;
+      case "reservation_date":
+        setReservationDate(event.target.value);
+        break;
+      case "reservation_time":
+        setReservationTime(event.target.value);
+        break;
+      case "people":
+        setPeople(event.target.value);
+        break;
+      default:
+    }
+  };
+  
   return (
     <>
       {isTuesday && TuesdayAlert}
       {isPastDate && PastDateAlert}
       {beforeHours && BeforeHoursMessage}
       {afterHours && AfterHoursMessage}
-      <Form
-        onChangeHandler={(event) =>
-          onChangeHandler(
-            event,
-            setFirstName,
-            setLastName,
-            setMobileNumber,
-            setPeople,
-            setReservationDate,
-            setReservationTime
-          )
-        }
-        handleSubmit={(event) =>
-          handleSubmit(
-            event,
-            firstName,
-            lastName,
-            mobileNumber,
-            people,
-            reservationDate,
-            reservationTime,
-            reservationID,
-            setIsTuesday,
-            setIsPastDate,
-            setBeforeHours,
-            setAfterHours,
-            isUpdate,
-            history
-          )
-        }
-        handleCancel={() => handleCancel(history)}
-        firstName={firstName}
-        lastName={lastName}
-        mobileNumber={mobileNumber}
-        people={people}
-        reservationDate={reservationDate}
-        reservationTime={reservationTime}
-      />
+      <form className="h6 p-3 w-50 m-auto">
+      <div className="form-group">
+        <label htmlFor="first_name">First name</label>
+        <input
+          onChange={(event) => onChangeHandler(event)}
+          name="first_name"
+          type="text"
+          className="form-control"
+          id="first_name"
+          placeholder="First name"
+          value={firstName}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="last_name">Last name</label>
+        <input
+          onChange={(event) => onChangeHandler(event)}
+          name="last_name"
+          type="text"
+          className="form-control"
+          id="last_name"
+          placeholder="Last name"
+          value={lastName}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="mobile_number">Mobile number</label>
+        <input
+          onChange={(event) => onChangeHandler(event)}
+          name="mobile_number"
+          type="tel"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          className="form-control"
+          id="mobile_numbere"
+          placeholder="123-555-5555"
+          value={mobileNumber}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="reservation_date">Date</label>
+        <input
+          onChange={(event) => onChangeHandler(event)}
+          name="reservation_date"
+          type="date"
+          className="form-control"
+          id="reservation_date"
+          placeholder="Date"
+          value={reservationDate}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="reservation_time">Time</label>
+        <input
+          onChange={(event) => onChangeHandler(event)}
+          name="reservation_time"
+          type="time"
+          className="form-control"
+          id="reservation_time"
+          placeholder="Time"
+          value={reservationTime}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="people">People</label>
+        <input
+          onChange={(event) => onChangeHandler(event)}
+          name="people"
+          type="number"
+          className="form-control"
+          id="people"
+          placeholder="minimum 1 person"
+          value={people}
+          min="1"
+          required
+        />
+      </div>
+      <button
+        onClick={(event) => handleSubmit(event)}
+        type="submit"
+        className="btn btn-primary w-100 mb-2"
+      >
+        Submit
+      </button>
+      <button onClick={() => handleCancel()} className="btn btn-warning w-100">
+        Cancel
+      </button>
+    </form>
     </>
   );
 };
