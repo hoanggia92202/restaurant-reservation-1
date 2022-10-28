@@ -1,6 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-const Form = ({ handleSubmit, onChangeHandler, handleCancel }) => {
+const NewTable = () => {
+  const history = useHistory();
+  const [tableName, setTableName] = useState("");
+  const [capacity, setCapacity] = useState(0);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const table = {
+      table_name: tableName,
+      capacity: capacity,
+    };
+  
+    console.log("NewTable: ", table);
+  };
+
+  const onChangeHandler = (event) => {
+    switch (event.target.name) {
+      case "table_name":
+        setTableName(event.target.value);
+        break;
+      case "capacity":
+        setCapacity(event.target.value);
+        break;
+      default:
+    }
+  };
+
+  const handleCancel = () => {
+    history.goBack();
+  };
+  
+
   return (
     <form
       className="h6 p-3 m-auto pt-5 w-50 "
@@ -40,6 +73,7 @@ const Form = ({ handleSubmit, onChangeHandler, handleCancel }) => {
       </button>
     </form>
   );
-};
+}
 
-export default Form;
+export default NewTable;
+
