@@ -33,7 +33,6 @@ const NewTable = () => {
     history.goBack();
   };
   
-
   return (
     <form
       className="h6 p-3 m-auto pt-5 w-50 "

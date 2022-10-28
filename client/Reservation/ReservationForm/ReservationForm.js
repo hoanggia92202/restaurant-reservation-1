@@ -8,7 +8,7 @@ import {
   AfterHoursMessage,
 } from "./AlertMessage";
 
-const NewReservation = ({ customerInfo = {} }) => {
+const ReservationForm = ({ customerInfo = {} }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
@@ -232,4 +232,4 @@ const NewReservation = ({ customerInfo = {} }) => {
   );
 };
 
-export default NewReservation;
+export default ReservationForm;
