@@ -8,13 +8,17 @@ const NewTable = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const table = {
       table_name: tableName,
       capacity: capacity,
     };
-  
-    console.log("NewTable: ", table);
+
+    const result = await fetch("/tables", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: table }),
+    });
   };
 
   const onChangeHandler = (event) => {
