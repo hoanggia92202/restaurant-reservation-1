@@ -63,6 +63,14 @@ const ReservationForm = ({ customerInfo = {} }) => {
     return false;
   };
 
+  const createReservation = async (reservation) => {
+        const response = await fetch("/reservations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ data: reservation }),
+        });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsTuesday(false);
@@ -95,10 +103,6 @@ const ReservationForm = ({ customerInfo = {} }) => {
       const response = isUpdate
         ? updateReservation(reservation, reservationID)
         : createReservation(reservation);
-  
-      if (response) {
-        history.goBack();
-      }
     }
   };
 
