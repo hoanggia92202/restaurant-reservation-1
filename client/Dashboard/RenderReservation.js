@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const RenderReservation = ({
   reservations,
   history,
-  
 }) => {
+  
   const cancelReservation = (reservation_id) => {
     const cancel = document.getElementById(reservation_id);
     cancel.classList.add("showCancelAlert");
@@ -21,7 +21,7 @@ const RenderReservation = ({
             <td>{reservation.first_name}</td>
             <td>{reservation.last_name}</td>
             <td>{reservation.reservation_date}</td>
-            <td>{reservation.reservation_date}</td>
+            <td>{reservation.reservation_time}</td>
             <td data-reservation-id-status={reservation.reservation_id}>
               {reservation.status}
             </td>

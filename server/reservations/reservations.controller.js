@@ -1,8 +1,10 @@
-/** create a reservation **/
-async function create(req, res) {
-    console.log("from reservations-comntroller: ", req.body.data)
+const service = require("./reservations.service");
+
+async function read(req, res) {
+    const result = await service.read();
+    res.status(200).json({data: result});
 }
 
 module.exports = {
-create,
+    read
 };

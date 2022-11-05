@@ -18,6 +18,7 @@ function Dashboard({ date }) {
     }
     setDashboardDate(today);
     history.push(`/dashboard?date=${today}`);
+    loadDashboard(today);
   },[today]);
 
   const handleToday = () => {
@@ -30,6 +31,18 @@ function Dashboard({ date }) {
   
   const handlePreviousDay = () => {
     setToday(previous(today));
+  }
+
+  const loadDashboard = async (todayDate) => {
+    const result = await fetch(`/reservations?date=${todayDate}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await result.json();
+    if(Object.keys(data).length > 0){
+      setReservations(data.data);
+    }
+    console.log("from loadDashboard ", Object.keys(data));
   }
 
   return (
