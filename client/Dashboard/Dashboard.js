@@ -9,15 +9,9 @@ function Dashboard({ date }) {
   const [reservations, setReservations] = useState([]);
   const [tables, setTables] = useState([]);
   const history = useHistory();
-  const [today, setToday] = useState("");
-  const [dashboardDate, setDashboardDate] = useState("");
+  const [today, setToday] = useState(date);
 
   useEffect(() => {
-    if(today === ""){
-      setToday(date);
-    }
-    setDashboardDate(today);
-    history.push(`/dashboard?date=${today}`);
     loadDashboard(today);
   },[today]);
 
@@ -39,7 +33,7 @@ function Dashboard({ date }) {
       headers: { "Content-Type": "application/json" },
     });
     const { data } = await result.json();
-      setReservations(data);
+    setReservations(data);
   }
 
   return (
@@ -47,7 +41,7 @@ function Dashboard({ date }) {
       <main>
         <div className="dashboard text-center h5">Dashboard</div>
         <div className="reservation text-center h6">
-          Reservations for date: {dashboardDate}
+          Reservations for date: {today}
         </div>
         <div className="row d-flex justify-content-center">
           <table className="table table-sm table-primary table-hover table-responsive-sm col-lg-5 m-3">

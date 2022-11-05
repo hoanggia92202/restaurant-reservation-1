@@ -1,7 +1,7 @@
 const router = require("express").Router();
- const controller = require("./reservations.controller");
+const controller = require("./reservations.controller");
 
- router.route("/").get(controller.readByDate);
+router.route("/").get(controller.readByDate).post(controller.create);
 
- module.exports = router;
+module.exports = router;
  

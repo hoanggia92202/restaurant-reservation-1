@@ -103,6 +103,8 @@ const ReservationForm = ({ customerInfo = {} }) => {
       const response = isUpdate
         ? updateReservation(reservation, reservationID)
         : createReservation(reservation);
+      
+      history.push('/dashboard');
     }
   };
 
