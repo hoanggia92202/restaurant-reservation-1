@@ -38,11 +38,8 @@ function Dashboard({ date }) {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
-    const data = await result.json();
-    if(Object.keys(data).length > 0){
-      setReservations(data.data);
-    }
-    console.log("from loadDashboard ", Object.keys(data));
+    const { data } = await result.json();
+      setReservations(data);
   }
 
   return (

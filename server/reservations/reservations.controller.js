@@ -1,10 +1,11 @@
 const service = require("./reservations.service");
 
-async function read(req, res) {
-    const result = await service.read();
+async function readByDate(req, res) {
+    const { date } = req.query;
+    const result = await service.readByDate(date);
     res.status(200).json({data: result});
 }
 
 module.exports = {
-    read
+    readByDate
 };
