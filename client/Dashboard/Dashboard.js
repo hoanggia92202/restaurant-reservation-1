@@ -12,8 +12,12 @@ function Dashboard({ date }) {
   const [today, setToday] = useState(date);
 
   useEffect(() => {
-    loadDashboard(today);
+    loadReservations(today);
   },[today]);
+
+  useEffect(() => {
+    loadTables();
+  },[]);
 
   const handleToday = () => {
     setToday(date);
@@ -27,13 +31,22 @@ function Dashboard({ date }) {
     setToday(previous(today));
   }
 
-  const loadDashboard = async (todayDate) => {
+  const loadReservations = async (todayDate) => {
     const result = await fetch(`/reservations?date=${todayDate}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
     const { data } = await result.json();
     setReservations(data);
+  }
+
+  const loadTables = async () => {
+    const result = await fetch(`/tables`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const { data } = await result.json();
+    setTables(data);
   }
 
   return (
