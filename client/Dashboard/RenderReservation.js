@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./RenderReservation.css";
 
 const RenderReservation = ({
   reservations,
@@ -30,7 +31,7 @@ const RenderReservation = ({
             {reservation.status === "booked" && (
               <td>
                 <Link
-                  className="btn btn-primary btn-sm"
+                  className="smallButton seat"
                   to={`${myReservevation}`}
                 >
                   Seat
@@ -40,7 +41,7 @@ const RenderReservation = ({
 
             <td>
               <Link
-                className="btn btn-warning btn-sm"
+                className="smallButton edit"
                 to={`/reservations/${reservation.reservation_id}/edit`}
               >
                 Edit
@@ -48,13 +49,13 @@ const RenderReservation = ({
             </td>
 
             <td>
-              <button
-                className="btn btn-danger btn-sm"
+              <Link
+                className="smallButton cancel"
                 onClick={() => cancelReservation(reservation.reservation_id)}
                 data-reservation-id-cancel={reservation.reservation_id}
               >
                 cancel
-              </button>
+              </Link>
             </td>
 
             <td className="cancelAlert" id={reservation.reservation_id}>

@@ -44,7 +44,7 @@ function Dashboard({ date }) {
           Reservations for date: {today}
         </div>
         <div className="row d-flex justify-content-center">
-          <table className="table table-sm table-primary table-hover table-responsive-sm col-lg-5 m-3">
+          <table className="table table-sm table-primary table-hover table-responsive-sm col-lg-6">
             <thead>
               <tr>
                 <th scope="col">ID</th>
@@ -63,7 +63,7 @@ function Dashboard({ date }) {
               />
             </tbody>
           </table>
-          <table className="table table-sm table-info table-hover table-responsive-sm col-lg-5 m-3">
+          <table className="table table-sm table-info table-hover table-responsive-sm col-lg-6">
             <thead>
               <tr>
                 <th scope="col">ID</th>
