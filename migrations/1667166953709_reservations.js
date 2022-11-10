@@ -18,9 +18,9 @@ exports.up = pgm => {
             updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
          )
         `
-    )
+    );
 };
 
 exports.down = pgm => {
-    pgm.sql(`DROP TABLE reservations`)
+    pgm.sql(`DROP TABLE reservations`);
 };

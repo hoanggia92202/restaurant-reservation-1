@@ -13,7 +13,7 @@ const NewTable = () => {
       table_name: tableName,
       capacity: capacity,
     };
-
+    
     const result = await fetch("/tables", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -39,7 +39,7 @@ const NewTable = () => {
   
   return (
     <form
-      className="h6 p-3 m-auto pt-5 w-50 "
+      className="h6 p-3 m-auto pt-5 w-50"
       onSubmit={(event) => handleSubmit(event)}
     >
       <div className="form-group">

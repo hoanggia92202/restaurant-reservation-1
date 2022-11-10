@@ -1,6 +1,10 @@
+const service = require("./tables.service");
+
 /** create a new table **/
 const create = async (req, res) => {
-    console.log("from tables-comntroller: ", req.body.data)
+    const { data } = req.body;
+    const result = await service.create(data);
+    res.status(201).json({data: result}); 
   };
 
   module.exports = {
