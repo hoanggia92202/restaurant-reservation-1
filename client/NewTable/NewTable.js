@@ -13,12 +13,14 @@ const NewTable = () => {
       table_name: tableName,
       capacity: capacity,
     };
-    
+
     const result = await fetch("/tables", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: table }),
     });
+    
+    history.push("/dashboard");
   };
 
   const onChangeHandler = (event) => {

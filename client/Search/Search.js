@@ -5,7 +5,6 @@ const Search = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
-
   const handleMobileNumber = (event) => {
     event.preventDefault();
     setMobileNumber(event.target.value);
