@@ -1,9 +1,15 @@
 const service = require("./reservations.service");
 
-async function readByDate(req, res) {
-    const { date } = req.query;
-    const result = await service.readByDate(date);
-    res.status(200).json({data: result});
+async function read(req, res) {
+    const { date, mobile_number } = req.query;
+
+    if(date){
+        const result = await service.readByDate(date);
+        res.status(200).json({data: result});
+    }else if(mobile_number){
+        const result = await service.readByMobileNumber(mobile_number);
+        res.status(200).json({data: result});
+    }
 }
 
 async function create(req,res) {
@@ -13,6 +19,6 @@ async function create(req,res) {
 }
 
 module.exports = {
-    readByDate,
+    read,
     create
 };
