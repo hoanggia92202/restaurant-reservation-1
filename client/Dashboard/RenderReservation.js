@@ -2,14 +2,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./RenderReservation.css";
 
-const RenderReservation = ({
-  reservations,
-  history,
-}) => {
-  
+const RenderReservation = ({reservations, loadReservations, today}) => {
+
   const cancelReservation = (reservation_id) => {
     const cancel = document.getElementById(reservation_id);
     cancel.classList.add("showCancelAlert");
+  };
+
+  const confirmCancelReservation = async (reservation_id) => {
+    const cancelStatus = await fetch(
+      `/reservations/${reservation_id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: { status: "cancelled" } })
+      }
+    );
+
+    if (cancelStatus) {
+      loadReservations(today);
+    }
+  };
+
+  const undoCancelReservation = (reservation_id) => {
+    const cancel = document.getElementById(reservation_id);
+    cancel.classList.remove("showCancelAlert");
   };
 
   if (reservations.length > 0) {
@@ -68,7 +85,6 @@ const RenderReservation = ({
                   confirmCancelReservation(
                     reservation.reservation_id,
                     history,
-                    
                   )
                 }
               >

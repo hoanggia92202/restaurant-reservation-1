@@ -12,13 +12,24 @@ async function read(req, res) {
     }
 }
 
-async function create(req,res) {
+async function create(req, res) {
     const { data } = req.body;
     const result = await service.create(data);
     res.status(201).json({data: result});
 }
 
+async function update(req, res) {
+    const { data } = req.body;
+
+    if(data.status === "cancelled"){
+        const { reservation_id } = req.params;
+        const result = await service.cancelReservation(reservation_id);
+        res.sendStatus(204);
+    }
+}
+
 module.exports = {
     read,
-    create
+    create,
+    update
 };

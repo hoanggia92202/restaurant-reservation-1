@@ -15,8 +15,13 @@ const create = async (data) => {
                     VALUES('${data.first_name}', '${data.last_name}', '${data.mobile_number}', '${data.reservation_date}', '${data.reservation_time}', ${data.people})`);
 }
 
+const cancelReservation = async (reservation_id) => {
+    return db.any(`DELETE FROM reservations WHERE reservation_id = ${reservation_id}`);
+}
+
 module.exports = {
     readByDate,
     readByMobileNumber,
-    create
+    create,
+    cancelReservation
 }

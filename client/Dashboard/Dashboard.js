@@ -72,7 +72,8 @@ function Dashboard({ date }) {
             <tbody>
               <RenderReservation
                 reservations={reservations}
-                history={history}
+                loadReservations={loadReservations}
+                today={today}
               />
             </tbody>
           </table>
