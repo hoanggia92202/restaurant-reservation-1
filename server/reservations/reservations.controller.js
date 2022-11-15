@@ -22,8 +22,8 @@ async function update(req, res) {
     const { data } = req.body;
 
     if(data.status === "cancelled"){
-        const { reservation_id } = req.params;
-        const result = await service.cancelReservation(reservation_id);
+        const { id } = req.params;
+        const result = await service.cancelReservation(id);
         res.sendStatus(204);
     }
 }

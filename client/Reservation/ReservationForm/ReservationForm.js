@@ -38,7 +38,7 @@ const ReservationForm = ({ customerInfo = {} }) => {
       setPeople(customerInfo.people);
       setReservationDate(customerInfo.reservationDate);
       setReservationTime(customerInfo.reservationTime);
-      setReservationID(customerInfo.reservation_id);
+      setReservationID(customerInfo.id);
       setIsUpdate(true);
     }
   }, [
@@ -48,7 +48,7 @@ const ReservationForm = ({ customerInfo = {} }) => {
     customerInfo.people,
     customerInfo.reservationDate,
     customerInfo.reservationTime,
-    customerInfo.reservation_id,
+    customerInfo.id,
   ]);
 
   const reservationIsAllowed = (reservationDate, reservationTime) => {

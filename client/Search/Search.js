@@ -22,13 +22,14 @@ const Search = () => {
     console.log("mobile front-reseult", data);
   };
 
-  const cancelReservation = (reservation_id) => {
-    const cancel = document.getElementById(reservation_id);
+  const cancelReservation = (id) => {
+    const cancel = document.getElementById(id);
     cancel.classList.add("showCancelAlert");
   };
 
-  const confirmCancelReservation = async (reservation_id) => {
-    const result2 = await fetch(`${reservationUrl}/${reservation_id}/status`, {
+  /*
+const confirmCancelReservation = async (id) => {
+    const result2 = await fetch(`${reservationUrl}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: { status: "cancelled" } }),
@@ -36,6 +37,7 @@ const Search = () => {
 
     history.go(0);
   };
+  */
 
   const undoCancelReservation = (reservation_id) => {
     const cancel = document.getElementById(reservation_id);

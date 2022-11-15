@@ -4,14 +4,14 @@ import "./RenderReservation.css";
 
 const RenderReservation = ({reservations, loadReservations, today}) => {
 
-  const cancelReservation = (reservation_id) => {
-    const cancel = document.getElementById(reservation_id);
+  const cancelReservation = (id) => {
+    const cancel = document.getElementById(id);
     cancel.classList.add("showCancelAlert");
   };
 
-  const confirmCancelReservation = async (reservation_id) => {
+  const confirmCancelReservation = async (id) => {
     const cancelStatus = await fetch(
-      `/reservations/${reservation_id}`,
+      `/reservations/${id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -24,23 +24,23 @@ const RenderReservation = ({reservations, loadReservations, today}) => {
     }
   };
 
-  const undoCancelReservation = (reservation_id) => {
-    const cancel = document.getElementById(reservation_id);
+  const undoCancelReservation = (id) => {
+    const cancel = document.getElementById(id);
     cancel.classList.remove("showCancelAlert");
   };
 
   if (reservations.length > 0) {
     return reservations.map((reservation) => {
-      let myReservevation = `reservations/${reservation.reservation_id}/seat?people=${reservation.people}`;
+      let myReservevation = `reservations/${reservation.id}/seat?people=${reservation.people}`;
       if (reservation.status === "booked" || reservation.status === "seated") {
         return (
-          <tr key={reservation.reservation_id}>
-            <th scope="row">{reservation.reservation_id}</th>
+          <tr key={reservation.id}>
+            <th scope="row">{reservation.id}</th>
             <td>{reservation.first_name}</td>
             <td>{reservation.last_name}</td>
             <td>{reservation.reservation_date}</td>
             <td>{reservation.reservation_time}</td>
-            <td data-reservation-id-status={reservation.reservation_id}>
+            <td data-reservation-id-status={reservation.id}>
               {reservation.status}
             </td>
             <td>{reservation.mobile_number}</td>
@@ -59,7 +59,7 @@ const RenderReservation = ({reservations, loadReservations, today}) => {
             <td>
               <Link
                 className="smallButton edit"
-                to={`/reservations/${reservation.reservation_id}/edit`}
+                to={`/reservations/${reservation.id}/edit`}
               >
                 Edit
               </Link>
@@ -68,14 +68,14 @@ const RenderReservation = ({reservations, loadReservations, today}) => {
             <td>
               <Link
                 className="smallButton cancel"
-                onClick={() => cancelReservation(reservation.reservation_id)}
-                data-reservation-id-cancel={reservation.reservation_id}
+                onClick={() => cancelReservation(reservation.id)}
+                data-reservation-id-cancel={reservation.id}
               >
                 cancel
               </Link>
             </td>
 
-            <td className="cancelAlert" id={reservation.reservation_id}>
+            <td className="cancelAlert" id={reservation.id}>
               <p>
                 Do you want to cancel this reservation? This cannot be undone.
               </p>
@@ -83,7 +83,7 @@ const RenderReservation = ({reservations, loadReservations, today}) => {
               <button
                 onClick={() =>
                   confirmCancelReservation(
-                    reservation.reservation_id,
+                    reservation.id,
                     history,
                   )
                 }
@@ -93,7 +93,7 @@ const RenderReservation = ({reservations, loadReservations, today}) => {
 
               <button
                 onClick={() =>
-                  undoCancelReservation(reservation.reservation_id)
+                  undoCancelReservation(reservation.id)
                 }
               >
                 cancel

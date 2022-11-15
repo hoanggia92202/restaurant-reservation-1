@@ -6,7 +6,7 @@ exports.up = pgm => {
     pgm.sql(
         `
          CREATE TABLE reservations(
-            reservation_id SERIAL PRIMARY KEY,
+            id SERIAL PRIMARY KEY,
             first_name VARCHAR(30) NOT NULL,
             last_name VARCHAR(30) NOT NULL,
             mobile_number VARCHAR(20) NOT NULL,
