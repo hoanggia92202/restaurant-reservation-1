@@ -14,9 +14,9 @@ td, th {
 }
 
 .edit {
-    background-color: rgba(131, 126, 4, 0.98);
+    background-color: #db9d20;
 }
 
 .cancel {
-    background-color: rgba(181, 33, 33, 0.98);
+    background-color: #DC4C64;
 }

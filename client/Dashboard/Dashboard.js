@@ -99,21 +99,21 @@ function Dashboard({ date }) {
           <button
             onClick={() => handlePreviousDay()}
             type="button"
-            className="btn btn-success col-8 col-sm-3 col-md-2 ml-auto mr-auto mr-sm-3 mb-2"
+            className="btn btn-success col-7 col-sm-3 col-md-2 ml-auto mr-auto mr-sm-3 mb-2"
           >
             Previous
           </button>
           <button
             onClick={() => handleToday()}
             type="button"
-            className="btn btn-danger col-8 col-sm-3 col-md-2 ml-auto mr-auto mr-sm-3 mb-2"
+            className="btn btn-danger col-7 col-sm-3 col-md-2 ml-auto mr-auto mr-sm-3 mb-2"
           >
             Today
           </button>
           <button
             onClick={() => handleNextDay()}
             type="button"
-            className="btn btn-warning col-8 col-sm-3 col-md-2 ml-auto mr-auto mb-2"
+            className="btn btn-warning col-7 col-sm-3 col-md-2 ml-auto mr-auto mb-2"
           >
             Next
           </button>
