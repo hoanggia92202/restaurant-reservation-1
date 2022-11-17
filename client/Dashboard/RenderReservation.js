@@ -13,7 +13,7 @@ const RenderReservation = ({reservations, loadReservations, today}) => {
     const cancelStatus = await fetch(
       `/reservations/${id}`,
       {
-        method: "PUT",
+        method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: { status: "cancelled" } })
       }

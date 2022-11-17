@@ -12,6 +12,12 @@ async function read(req, res) {
     }
 }
 
+async function readById(req, res) {
+    const { id } = req.params;
+    const result = await service.readById(id);
+    res.status(200).json({data: result});
+}
+
 async function create(req, res) {
     const { data } = req.body;
     const result = await service.create(data);
@@ -19,6 +25,13 @@ async function create(req, res) {
 }
 
 async function update(req, res) {
+    const { id } = req.params;
+    const { data } = req.body;
+    const result = await service.update(id, data);
+    res.sendStatus(204);
+}
+
+async function destroy(req, res) {
     const { data } = req.body;
 
     if(data.status === "cancelled"){
@@ -30,6 +43,8 @@ async function update(req, res) {
 
 module.exports = {
     read,
+    readById,
     create,
-    update
+    update,
+    delete: destroy
 };

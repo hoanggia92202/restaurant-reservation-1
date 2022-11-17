@@ -7,7 +7,7 @@ import { today } from "../utils/date-time";
 import NewReservation from "../Reservation/NewReservation/NewReservation";
 import NewTable from "../NewTable/NewTable";
 //import Seat from "../Seat/index";
-//import Edit from "../Reservation/EditReservation/EditReservation";
+import EditReservation from "../Reservation/EditReservation/EditReservation";
 
 function Routes() {
   return (
@@ -22,12 +22,12 @@ function Routes() {
         <Search />
       </Route>
       <Route exact={true} path="/reservations/new">
-      <NewReservation />
+        <NewReservation />
       </Route>
-      <Route exact={true} path="/reservations/:reservation_id/edit">
-        Edit
+      <Route exact={true} path="/reservations/:id/edit">
+        <EditReservation />
       </Route>
-      <Route exact={true} path="/reservations/:reservation_id/seat">
+      <Route exact={true} path="/reservations/:id/seat">
         Seat
       </Route>
       <Route path="/dashboard">

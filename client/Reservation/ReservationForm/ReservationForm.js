@@ -32,13 +32,14 @@ const ReservationForm = ({ customerInfo = {} }) => {
 
   useEffect(() => {
     if (Object.keys(customerInfo).length > 0) {
-      setFirstName(customerInfo.firstName);
-      setLastName(customerInfo.lastName);
-      setMobileNumber(customerInfo.mobileNumber);
-      setPeople(customerInfo.people);
-      setReservationDate(customerInfo.reservationDate);
-      setReservationTime(customerInfo.reservationTime);
-      setReservationID(customerInfo.id);
+      console.log("form", customerInfo)
+      setFirstName(customerInfo.first_name || "");
+      setLastName(customerInfo.last_name || "");
+      setMobileNumber(customerInfo.mobile_number || "");
+      setPeople(customerInfo.people || "");
+      setReservationDate(customerInfo.reservation_date || "");
+      setReservationTime(customerInfo.reservation_time || "");
+      setReservationID(customerInfo.id || "");
       setIsUpdate(true);
     }
   }, [
@@ -50,6 +51,7 @@ const ReservationForm = ({ customerInfo = {} }) => {
     customerInfo.reservationTime,
     customerInfo.id,
   ]);
+  
 
   const reservationIsAllowed = (reservationDate, reservationTime) => {
     if (
@@ -69,6 +71,14 @@ const ReservationForm = ({ customerInfo = {} }) => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ data: reservation }),
         });
+  };
+
+  const updateReservation = async (reservation, reservationID) => {
+    const response = await fetch(`/reservations/${reservationID}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: reservation }),
+    });
   };
 
   const handleSubmit = async (event) => {
