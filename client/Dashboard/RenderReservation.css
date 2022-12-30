@@ -20,3 +20,11 @@ td, th {
 .cancel {
     background-color: #DC4C64;
 }
+
+.showCancelAlert{
+    display: inline;
+}
+
+.hideCancelAlert{
+    display: none;
+}

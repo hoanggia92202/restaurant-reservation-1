@@ -17,6 +17,7 @@ const EditReservation = () => {
         });
         const { data } = await result.json();
         setCustomerInfo(data[0]);
+        console.log("polo",data[0])
       }
     
     

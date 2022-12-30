@@ -22,10 +22,6 @@
     display: none;
 }
 
-.showCancelAlert{
-    display: inline;
-}
-
 .dashboard {
     font-size: 1.8rem;
 }

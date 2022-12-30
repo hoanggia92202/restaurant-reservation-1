@@ -10,6 +10,10 @@ const RenderReservation = ({reservations, loadReservations, today}) => {
   };
 
   const confirmCancelReservation = async (id) => {
+    const cancel = document.getElementById(id);
+    cancel.classList.remove("showCancelAlert");
+    cancel.classList.add("hideCancelAlert");
+
     const cancelStatus = await fetch(
       `/reservations/${id}`,
       {
@@ -27,6 +31,7 @@ const RenderReservation = ({reservations, loadReservations, today}) => {
   const undoCancelReservation = (id) => {
     const cancel = document.getElementById(id);
     cancel.classList.remove("showCancelAlert");
+    cancel.classList.add("hideCancelAlert");
   };
 
   if (reservations.length > 0) {
@@ -69,7 +74,6 @@ const RenderReservation = ({reservations, loadReservations, today}) => {
               <Link
                 className="smallButton cancel"
                 onClick={() => cancelReservation(reservation.id)}
-                data-reservation-id-cancel={reservation.id}
               >
                 cancel
               </Link>

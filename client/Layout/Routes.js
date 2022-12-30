@@ -4,10 +4,10 @@ import Dashboard from "../Dashboard/Dashboard";
 import Search from "../Search/Search";
 //import NotFound from "./NotFound";
 import { today } from "../utils/date-time";
-import NewReservation from "../Reservation/NewReservation/NewReservation";
+import NewReservation from "../NewReservation/NewReservation";
 import NewTable from "../NewTable/NewTable";
 //import Seat from "../Seat/index";
-import EditReservation from "../Reservation/EditReservation/EditReservation";
+import EditReservation from "../EditReservation/EditReservation";
 
 function Routes() {
   return (

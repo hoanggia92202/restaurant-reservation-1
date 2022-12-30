@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import {
-  TuesdayAlert,
-  PastDateAlert,
-  BeforeHoursMessage,
-  AfterHoursMessage,
-} from "./AlertMessage";
+import { TuesdayAlert, PastDateAlert, BeforeHoursMessage, AfterHoursMessage } from "./AlertMessage";
 
 const ReservationForm = ({ customerInfo = {} }) => {
   const [firstName, setFirstName] = useState("");
@@ -32,7 +27,6 @@ const ReservationForm = ({ customerInfo = {} }) => {
 
   useEffect(() => {
     if (Object.keys(customerInfo).length > 0) {
-      console.log("form", customerInfo)
       setFirstName(customerInfo.first_name || "");
       setLastName(customerInfo.last_name || "");
       setMobileNumber(customerInfo.mobile_number || "");
@@ -42,15 +36,7 @@ const ReservationForm = ({ customerInfo = {} }) => {
       setReservationID(customerInfo.id || "");
       setIsUpdate(true);
     }
-  }, [
-    customerInfo.firstName,
-    customerInfo.lastName,
-    customerInfo.mobileNumber,
-    customerInfo.people,
-    customerInfo.reservationDate,
-    customerInfo.reservationTime,
-    customerInfo.id,
-  ]);
+  }, [customerInfo]);
   
 
   const reservationIsAllowed = (reservationDate, reservationTime) => {
