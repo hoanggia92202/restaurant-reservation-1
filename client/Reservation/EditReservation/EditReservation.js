@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReservationForm from "../../ReservationForm/ReservationForm";
+import ReservationForm from "../ReservationForm/ReservationForm";
 import { useParams } from 'react-router-dom'
 
 const EditReservation = () => {

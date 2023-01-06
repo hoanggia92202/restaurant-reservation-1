@@ -2,9 +2,9 @@ import React from "react";
 import Menu from "./Menu";
 import Routes from "./Routes";
 
-import "./Layout.css";
+import "./Main.css";
 
-function Layout() {
+function Main() {
   return (
     <div className="container-fluid">
       <div className="row h-100">
@@ -19,4 +19,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default Main;

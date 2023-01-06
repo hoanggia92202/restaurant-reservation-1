@@ -6,7 +6,7 @@ import Search from "../Search/Search";
 import { today } from "../utils/date-time";
 import NewReservation from "../Reservation/NewReservation/NewReservation";
 import NewTable from "../NewTable/NewTable";
-import Seat from "../Seat/Seat";
+import Seat from "../Reservation/Seat/Seat"
 import EditReservation from "../Reservation/EditReservation/EditReservation";
 
 function Routes() {
