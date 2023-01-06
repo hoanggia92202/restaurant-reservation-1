@@ -9,7 +9,8 @@ const tablesRouter = require("./server/tables/tables.router");
 const reservationsRouter = require("./server/reservations/reservations.router");
 
 /** this point to the html in ../dist/index.html **/
-app.use(express.static(path.resolve(__dirname, 'index.html')));
+app.use(express.static(path.resolve(__dirname, './public/index.html')));
+console.log(">>>", path.resolve(__dirname, '/index.html'))
 
 app.use("/reservations", reservationsRouter);
 app.use("/tables", tablesRouter);

@@ -14,7 +14,7 @@ const NewTable = () => {
       capacity: capacity,
     };
 
-    const result = await fetch("/tables", {
+    const result = await fetch("https://my-api-teal.vercel.app/tables", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: table }),

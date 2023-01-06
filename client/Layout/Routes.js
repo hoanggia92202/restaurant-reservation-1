@@ -6,7 +6,7 @@ import Search from "../Search/Search";
 import { today } from "../utils/date-time";
 import NewReservation from "../NewReservation/NewReservation";
 import NewTable from "../NewTable/NewTable";
-//import Seat from "../Seat/index";
+import Seat from "../Seat/Seat";
 import EditReservation from "../EditReservation/EditReservation";
 
 function Routes() {
@@ -28,7 +28,7 @@ function Routes() {
         <EditReservation />
       </Route>
       <Route exact={true} path="/reservations/:id/seat">
-        Seat
+        <Seat />
       </Route>
       <Route path="/dashboard">
         <Dashboard date={today()} />
