@@ -1,6 +1,6 @@
 import React from "react";
 
-const RenderTable = ({
+const TablePanel = ({
   tables,
   seatFinish,
   confirmSeatFinish,
@@ -52,4 +52,4 @@ const RenderTable = ({
   );
 };
 
-export default RenderTable;
+export default TablePanel;

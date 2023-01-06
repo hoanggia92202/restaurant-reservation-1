@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { previous, next } from "../utils/date-time";
 import { useHistory } from "react-router-dom";
-import RenderTable from "./RenderTable";
-import RenderReservation from "./RenderReservation";
+import TablePanel from "./TablePanel";
+import ReservationPanel from "./ReservationPanel";
 import "./Dashboard.css";
 
 function Dashboard({ date }) {
@@ -70,7 +70,7 @@ function Dashboard({ date }) {
               </tr>
             </thead>
             <tbody>
-              <RenderReservation
+              <ReservationPanel
                 reservations={reservations}
                 loadReservations={loadReservations}
                 today={today}
@@ -88,7 +88,7 @@ function Dashboard({ date }) {
               </tr>
             </thead>
             <tbody>
-              <RenderTable
+              <TablePanel
                 history={history}
                 tables={tables}
               />

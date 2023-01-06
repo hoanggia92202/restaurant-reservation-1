@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./RenderReservation.css";
+import "./ReservationPanel.css";
 
-const RenderReservation = ({reservations, loadReservations, today}) => {
+const ReservationPanel = ({reservations, loadReservations, today}) => {
 
   const cancelReservation = (id) => {
     const cancel = document.getElementById(id);
@@ -111,4 +111,4 @@ const RenderReservation = ({reservations, loadReservations, today}) => {
   return null;
 };
 
-export default RenderReservation;
+export default ReservationPanel;
