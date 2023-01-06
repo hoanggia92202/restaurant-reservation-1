@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReservationForm from "../ReservationForm/ReservationForm";
+import ReservationForm from "../../ReservationForm/ReservationForm";
 import { useParams } from 'react-router-dom'
 
 const EditReservation = () => {
@@ -17,9 +17,7 @@ const EditReservation = () => {
         });
         const { data } = await result.json();
         setCustomerInfo(data[0]);
-        console.log("polo",data[0])
-      }
-    
+    }
     
   return <ReservationForm customerInfo={customerInfo} />;
 };
