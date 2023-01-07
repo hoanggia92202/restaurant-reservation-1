@@ -12,7 +12,10 @@ function Dashboard({ date }) {
   const history = useHistory();
 
   useEffect(() => {
-    loadReservations(today);
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+    loadReservations(today, signal);
+    return () => abortController.abort();
   },[today]);
 
   useEffect(() => {
@@ -31,17 +34,22 @@ function Dashboard({ date }) {
     setToday(previous(today));
   }
 
-  const loadReservations = async (todayDate) => {
-    const response = await fetch(`/reservations?date=${todayDate}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
+  const loadReservations = async (todayDate, signal) => {
+    try{
+      const response = await fetch(`/reservations?date=${todayDate}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        signal: signal
+      });
 
-    if(response.status === 200){
-      const { data } = await response.json();
-      setReservations(data);  
-    }else {
-      console.log("Error loading reservations: ", response)
+      if(response.status === 200){
+        const { data } = await response.json();
+        setReservations(data);  
+      }else {
+        console.log("Error loading reservations: ", response)
+      }
+    }catch(err) {
+      console.log("Error....", err)
     }
   }
 
