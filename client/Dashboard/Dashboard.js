@@ -8,8 +8,8 @@ import "./Dashboard.css";
 function Dashboard({ date }) {
   const [reservations, setReservations] = useState([]);
   const [tables, setTables] = useState([]);
-  const history = useHistory();
   const [today, setToday] = useState(date);
+  const history = useHistory();
 
   useEffect(() => {
     loadReservations(today);
@@ -32,21 +32,31 @@ function Dashboard({ date }) {
   }
 
   const loadReservations = async (todayDate) => {
-    const result = await fetch(`/reservations?date=${todayDate}`, {
+    const response = await fetch(`/reservations?date=${todayDate}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
-    const { data } = await result.json();
-    setReservations(data);
+
+    if(response.status === 200){
+      const { data } = await response.json();
+      setReservations(data);  
+    }else {
+      console.log("Error loading reservations: ", response)
+    }
   }
 
   const loadTables = async () => {
-    const result = await fetch(`/tables`, {
+    const response = await fetch(`/tables`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
-    const { data } = await result.json();
-    setTables(data);
+
+    if(response.status === 200){
+      const { data } = await response.json();
+      setTables(data);
+    }else {
+      console.log("Error loading tables: ", response)
+    }
   }
 
   return (
