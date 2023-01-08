@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { previous, next } from "../utils/date-time";
-import { useHistory } from "react-router-dom";
 import TablePanel from "./TablePanel";
 import ReservationPanel from "./ReservationPanel";
 import "./Dashboard.css";
 
 function Dashboard({ date }) {
   const [reservations, setReservations] = useState([]);
-  const [tables, setTables] = useState([]);
   const [today, setToday] = useState(date);
-  const history = useHistory();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -17,10 +14,6 @@ function Dashboard({ date }) {
     loadReservations(today, signal);
     return () => abortController.abort();
   },[today]);
-
-  useEffect(() => {
-    loadTables();
-  },[]);
 
   const handleToday = () => {
     setToday(date);
@@ -49,24 +42,6 @@ function Dashboard({ date }) {
         console.log("Error loading reservations: ", response)
       }
     }catch(err) {
-      console.log("Error....", err);
-    }
-  }
-
-  const loadTables = async () => {
-    try{
-      const response = await fetch(`/tables`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-  
-      if(response.status === 200){
-        const { data } = await response.json();
-        setTables(data);
-      }else {
-        console.log("Error loading tables: ", response)
-      }
-    }catch(err){
       console.log("Error....", err);
     }
   }
@@ -110,10 +85,7 @@ function Dashboard({ date }) {
               </tr>
             </thead>
             <tbody>
-              <TablePanel
-                history={history}
-                tables={tables}
-              />
+              <TablePanel />
             </tbody>
           </table>
         </div>

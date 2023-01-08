@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
-const TablePanel = ({
-  tables,
-  seatFinish,
-  confirmSeatFinish,
-  cancelSeatFinish,
-  history,
-}) => {
+const TablePanel = () => {
+  const [tables, setTables] = useState([]);
+  const history = useHistory();
+
+  useEffect(() => {
+    loadTables()
+  },[])
+
+  const loadTables = async () => {
+    try{
+      const response = await fetch(`/tables`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+  
+      if(response.status === 200){
+        const { data } = await response.json();
+        setTables(() => data);
+      }else {
+        console.log("Error loading tables: ", response)
+      }
+    }catch(err){
+      console.log("Error....", err);
+    }
+  }
+
   return (
+    console.log("tablePanel>>>"),
     tables &&
     tables.map((table) => {
-      console.log("tables", table.id, table.reservation_id)
       return (
         <tr key={table.id}>
           <th scope="row">{table.id}</th>

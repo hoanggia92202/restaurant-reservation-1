@@ -108,6 +108,7 @@ const ReservationPanel = ({reservations, loadReservations, today}) => {
       }
     });
   }
+  console.log("reservationPanel>>>")
   return null;
 };
 
