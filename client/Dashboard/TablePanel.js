@@ -10,12 +10,13 @@ const TablePanel = ({
   return (
     tables &&
     tables.map((table) => {
+      console.log("tables", table.id, table.reservation_id)
       return (
-        <tr key={table.table_id}>
-          <th scope="row">{table.table_id}</th>
+        <tr key={table.id}>
+          <th scope="row">{table.id}</th>
           <td>{table.table_name}</td>
           <td>{table.capacity}</td>
-          <td data-table-id-status={table.table_id}>
+          <td data-table-id-status={table.id}>
             {table.reservation_id ? "Occupied" : "Free"}
           </td>
           <td>
@@ -23,23 +24,20 @@ const TablePanel = ({
               <>
                 <button
                   className="btn btn-danger btn-sm"
-                  data-table-id-finish={table.table_id}
-                  onClick={() => seatFinish(table.table_id, history)}
+                  data-table-id-finish={table.id}
+                  onClick={() => seatFinish(table.id, history)}
                 >
                   Finish
                 </button>
-
-                <div id={table.table_id} className="finishAlert">
+                <div id={table.id} className="finishAlert">
                   <h5>
                     Is this table ready to seat new guests? This cannot be
                     undone.
                   </h5>
-
                   <button onClick={() => confirmSeatFinish(table, history)}>
                     Ok
                   </button>
-
-                  <button onClick={() => cancelSeatFinish(table.table_id)}>
+                  <button onClick={() => cancelSeatFinish(table.id)}>
                     Cancel
                   </button>
                 </div>
