@@ -6,6 +6,7 @@ const TablePanel = () => {
   const history = useHistory();
 
   useEffect(() => {
+    console.log("table api call...")
     loadTables()
   },[])
 
@@ -25,7 +26,7 @@ const TablePanel = () => {
     }catch(err){
       console.log("Error....", err);
     }
-  }
+  };
 
   return (
     console.log("tablePanel>>>"),

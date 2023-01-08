@@ -1,49 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { previous, next } from "../utils/date-time";
-import TablePanel from "./TablePanel";
-import ReservationPanel from "./ReservationPanel";
+import React, { useState } from "react";
+import { previous, next } from "../../utils/date-time";
+import TablePanel from "../TablePanel";
+import ReservationPanel from "../ReservationPanel/ReservationPanel";
 import "./Dashboard.css";
 
 function Dashboard({ date }) {
-  const [reservations, setReservations] = useState([]);
   const [today, setToday] = useState(date);
 
-  useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
-    loadReservations(today, signal);
-    return () => abortController.abort();
-  },[today]);
-
   const handleToday = () => {
-    setToday(date);
+    setToday(today);
   }
 
-  const handleNextDay = async () => {
+  const handleNextDay = () => {
     setToday(next(today))
   };
   
   const handlePreviousDay = () => {
     setToday(previous(today));
-  }
-
-  const loadReservations = async (todayDate, signal) => {
-    try{
-      const response = await fetch(`/reservations?date=${todayDate}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        signal: signal
-      });
-
-      if(response.status === 200){
-        const { data } = await response.json();
-        setReservations(data);  
-      }else {
-        console.log("Error loading reservations: ", response)
-      }
-    }catch(err) {
-      console.log("Error....", err);
-    }
   }
 
   return (
@@ -68,8 +41,6 @@ function Dashboard({ date }) {
             </thead>
             <tbody>
               <ReservationPanel
-                reservations={reservations}
-                loadReservations={loadReservations}
                 today={today}
               />
             </tbody>

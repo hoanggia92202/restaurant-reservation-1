@@ -1,8 +1,37 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import "./ReservationPanel.css";
 
-const ReservationPanel = ({reservations, loadReservations, today}) => {
+const ReservationPanel = ({today}) => {
+
+  const [reservations, setReservations] = useState([]);
+
+  useEffect(() => {
+    console.log("reser. api call...")
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+    loadReservations(today, signal);
+    return () => abortController.abort();
+  },[today]);
+
+  const loadReservations = async (todayDate, signal) => {
+    try{
+      const response = await fetch(`/reservations?date=${todayDate}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        signal: signal
+      });
+
+      if(response.status === 200){
+        const { data } = await response.json();
+        setReservations(data);  
+      }else {
+        console.log("Error loading reservations: ", response)
+      }
+    }catch(err) {
+      console.log("Error....", err);
+    }
+  };
 
   const cancelReservation = (id) => {
     const cancel = document.getElementById(id);
@@ -60,7 +89,6 @@ const ReservationPanel = ({reservations, loadReservations, today}) => {
                 </Link>
               </td>
             )}
-
             <td>
               <Link
                 className="smallButton edit"
@@ -69,7 +97,6 @@ const ReservationPanel = ({reservations, loadReservations, today}) => {
                 Edit
               </Link>
             </td>
-
             <td>
               <Link
                 className="smallButton cancel"
@@ -78,12 +105,10 @@ const ReservationPanel = ({reservations, loadReservations, today}) => {
                 cancel
               </Link>
             </td>
-
             <td className="cancelAlert" id={reservation.id}>
               <p>
                 Do you want to cancel this reservation? This cannot be undone.
               </p>
-
               <button
                 onClick={() =>
                   confirmCancelReservation(
@@ -94,7 +119,6 @@ const ReservationPanel = ({reservations, loadReservations, today}) => {
               >
                 OK
               </button>
-
               <button
                 onClick={() =>
                   undoCancelReservation(reservation.id)
@@ -108,7 +132,7 @@ const ReservationPanel = ({reservations, loadReservations, today}) => {
       }
     });
   }
-  console.log("reservationPanel>>>")
+  console.log("reservationPanel-null>>>")
   return null;
 };
 
