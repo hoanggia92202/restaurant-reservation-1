@@ -49,21 +49,25 @@ function Dashboard({ date }) {
         console.log("Error loading reservations: ", response)
       }
     }catch(err) {
-      console.log("Error....", err)
+      console.log("Error....", err);
     }
   }
 
   const loadTables = async () => {
-    const response = await fetch(`/tables`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
-
-    if(response.status === 200){
-      const { data } = await response.json();
-      setTables(data);
-    }else {
-      console.log("Error loading tables: ", response)
+    try{
+      const response = await fetch(`/tables`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+  
+      if(response.status === 200){
+        const { data } = await response.json();
+        setTables(data);
+      }else {
+        console.log("Error loading tables: ", response)
+      }
+    }catch(err){
+      console.log("Error....", err);
     }
   }
 
