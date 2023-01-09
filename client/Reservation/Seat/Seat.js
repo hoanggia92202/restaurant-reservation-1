@@ -34,6 +34,7 @@ const Seat = () => {
     const selectEl = document.getElementById("tables");
     const table_id = selectEl.value;
 
+    /* update tables and reservations status */
     Promise.all([
       fetch(`/tables/seat`, {
         method: "PUT",
@@ -41,15 +42,15 @@ const Seat = () => {
         body: JSON.stringify({ data: {
           table_id: table_id,
           reservation_id: reservation_id
-        } })
+        }})
       }),
       fetch(`/reservations/${reservation_id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: { status: "seated" } }),
-      })  
-    ]).then(([tables, reservations]) => {
-      console.log("update status success>>>>")
+      })
+    ]).then(() => {
+      history.push("/dashboard");
     }).catch((err) => {
       console.log("Error: ", err)
     })
@@ -65,6 +66,7 @@ const Seat = () => {
       <select name="tables" id="tables">
         {tables.map((table) => {
           return (
+            {/* only show empty tables with enough capacity */}
             (table.capacity >= people && table.reservation_id === null) && (
               <option
                 id={table.id}

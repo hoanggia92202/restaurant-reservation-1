@@ -17,6 +17,7 @@ const update = async (req, res) => {
     const { data } = req.body;
     const result = await service.update(data)
     console.log("update>>>",data)
+    res.sendStatus(204);
 }
 
 module.exports = {
