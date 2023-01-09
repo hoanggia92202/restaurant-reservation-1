@@ -40,13 +40,13 @@ const ReservationPanel = ({today}) => {
   /* list all available reservations in database */
   if (reservations.length > 0) {
     return reservations.map((reservation) => {
-      
+
       /* set link to seat assignment */
       const myReservevation = `reservations/${reservation.id}/seat?people=${reservation.people}`;
       
       return (
         <tr key={reservation.id}>
-          <th scope="row">{reservation.id}</th>
+          <th className="pl-3" scope="row">{reservation.id}</th>
           <td>{reservation.first_name}</td>
           <td>{reservation.last_name}</td>
           <td>{reservation.reservation_date}</td>

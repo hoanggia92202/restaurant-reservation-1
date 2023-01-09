@@ -32,7 +32,7 @@ const TablePanel = () => {
     tables.length > 0 && tables.map((table) => {
       return (
         <tr key={table.id}>
-          <th scope="row">{table.id}</th>
+          <th className="pl-3" scope="row">{table.id}</th>
           <td>{table.table_name}</td>
           <td>{table.capacity}</td>
           <td data-table-id-status={table.id}>

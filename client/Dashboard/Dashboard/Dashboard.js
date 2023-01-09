@@ -22,15 +22,14 @@ function Dashboard({ date }) {
   return (
     <div className="container-fluid p-5">
       <main>
-        <div className="dashboard text-center h5">Dashboard</div>
-        <div className="reservation text-center h6">
-          Reservations for date: {today}
+        <div className="reservation text-center">
+         Current Date: {today}
         </div>
         <div className="row d-flex justify-content-center">
           <table className="table table-sm table-primary table-hover table-responsive-sm col-lg-6">
             <thead>
               <tr>
-                <th scope="col">ID</th>
+                <th className="pl-3" scope="col">ID</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Date</th>
@@ -46,7 +45,7 @@ function Dashboard({ date }) {
           <table className="table table-sm table-info table-hover table-responsive-sm col-lg-6">
             <thead>
               <tr>
-                <th scope="col">ID</th>
+                <th className="pl-3" scope="col">ID</th>
                 <th scope="col">Table Name</th>
                 <th scope="col">Table Capacity</th>
                 <th scope="col">Table Status</th>
