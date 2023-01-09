@@ -14,13 +14,22 @@ const NewTable = () => {
       capacity: capacity,
     };
 
-    const result = await fetch("https://my-api-teal.vercel.app/tables", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data: table }),
-    });
-    
-    history.push("/dashboard");
+    /* create new table */
+    try{
+      const response = await fetch("/tables", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: table }),
+      });
+      
+      if(response.status === 201){
+        history.push("/dashboard");
+      }else{
+        console.log("Error creating table !");
+      }
+    }catch(err){
+      console.log("Error: ", err);
+    }
   };
 
   const onChangeHandler = (event) => {
