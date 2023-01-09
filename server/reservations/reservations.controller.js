@@ -31,6 +31,14 @@ async function update(req, res) {
     res.sendStatus(204);
 }
 
+async function updateStatus(req, res) {
+    const { id } = req.params;
+    const { data } = req.body;
+    console.log("update status>>>", id, data)
+    const result = await service.updateStatus(id, data);
+    res.sendStatus(204);
+}
+
 async function destroy(req, res) {
     const { data } = req.body;
 
@@ -46,5 +54,6 @@ module.exports = {
     readById,
     create,
     update,
+    updateStatus,
     delete: destroy
 };

@@ -29,6 +29,14 @@ const update = async (id, data) => {
                  `)
 }
 
+const updateStatus = async (id, data) => {
+    return db.any(`
+        UPDATE reservations
+        SET status = '${data.status}'
+        WHERE id = ${id}
+    `)
+}
+
 const cancelReservation = async (id) => {
     return db.any(`DELETE FROM reservations WHERE id = ${id}`);
 }
@@ -39,5 +47,6 @@ module.exports = {
     readById,
     create,
     update,
+    updateStatus,
     cancelReservation
 }

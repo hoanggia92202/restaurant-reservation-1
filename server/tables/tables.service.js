@@ -15,7 +15,14 @@ const create = async (data) => {
     `);
 }
 
+const update = async (data) => {
+    return db.any(`
+        UPDATE tables SET reservation_id = ${data.reservation_id} WHERE id = ${data.table_id}
+    `);
+}
+
 module.exports = {
     read,
-    create
+    create,
+    update
 }

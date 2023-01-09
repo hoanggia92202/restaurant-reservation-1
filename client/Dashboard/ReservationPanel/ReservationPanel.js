@@ -39,7 +39,7 @@ const ReservationPanel = ({today}) => {
 
   if (reservations.length > 0) {
     return reservations.map((reservation) => {
-      let myReservevation = `reservations/${reservation.id}/seat?people=${reservation.people}`;
+      const myReservevation = `reservations/${reservation.id}/seat?people=${reservation.people}`;
       
       return (
         <tr key={reservation.id}>

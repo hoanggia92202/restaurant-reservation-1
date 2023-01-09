@@ -11,10 +11,17 @@ const create = async (req, res) => {
     const { data } = req.body;
     const result = await service.create(data);
     res.status(201).json({data: result}); 
-  };
+};
 
-  module.exports = {
-    read,
-    create
-  };
+const update = async (req, res) => {
+    const { data } = req.body;
+    const result = await service.update(data)
+    console.log("update>>>",data)
+}
+
+module.exports = {
+  read,
+  create,
+  update
+};
   
