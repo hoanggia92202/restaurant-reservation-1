@@ -33,12 +33,15 @@ const ReservationPanel = ({today}) => {
         console.log("Error loading reservations: ", response)
       }
     }catch(err) {
-      console.log("Error....", err);
+      console.log("Error: ", err);
     }
   };
 
+  /* list all available reservations in database */
   if (reservations.length > 0) {
     return reservations.map((reservation) => {
+      
+      /* set link to seat assignment */
       const myReservevation = `reservations/${reservation.id}/seat?people=${reservation.people}`;
       
       return (
@@ -81,7 +84,6 @@ const ReservationPanel = ({today}) => {
       );
     });
   }
-  return null;
 };
 
 export default ReservationPanel;
