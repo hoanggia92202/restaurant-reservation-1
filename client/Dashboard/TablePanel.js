@@ -23,13 +23,13 @@ const TablePanel = () => {
         console.log("Error loading tables: ", response)
       }
     }catch(err){
-      console.log("Error....", err);
+      console.log("Error: ", err);
     }
   };
 
   return (
-    tables &&
-    tables.map((table) => {
+    /* list all tables in database */
+    tables.length > 0 && tables.map((table) => {
       return (
         <tr key={table.id}>
           <th scope="row">{table.id}</th>
