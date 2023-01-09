@@ -6,7 +6,6 @@ const TablePanel = () => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log("table api call...")
     loadTables()
   },[])
 
@@ -29,7 +28,6 @@ const TablePanel = () => {
   };
 
   return (
-    console.log("tablePanel>>>"),
     tables &&
     tables.map((table) => {
       return (

@@ -8,7 +8,7 @@ function Dashboard({ date }) {
   const [today, setToday] = useState(date);
 
   const handleToday = () => {
-    setToday(today);
+    setToday(date);
   }
 
   const handleNextDay = () => {
@@ -40,9 +40,7 @@ function Dashboard({ date }) {
               </tr>
             </thead>
             <tbody>
-              <ReservationPanel
-                today={today}
-              />
+              <ReservationPanel today={today} />
             </tbody>
           </table>
           <table className="table table-sm table-info table-hover table-responsive-sm col-lg-6">
