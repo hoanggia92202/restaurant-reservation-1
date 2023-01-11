@@ -49,11 +49,8 @@ const Seat = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: { status: "seated" } }),
       })
-    ]).then(() => {
-      history.push("/dashboard");
-    }).catch((err) => {
-      console.log("Error: ", err)
-    })
+    ]).then(() => history.push("/dashboard"))
+    .catch((err) => console.log("Error: ", err));
   };
   
   const handleCancel = () => {
@@ -64,9 +61,9 @@ const Seat = () => {
     <form>
       <label htmlFor="tables">Choose a table:</label>
       <select name="tables" id="tables">
+        {/* only show empty tables with enough capacity */}
         {tables.map((table) => {
           return (
-            {/* only show empty tables with enough capacity */}
             (table.capacity >= people && table.reservation_id === null) && (
               <option
                 id={table.id}
