@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./TablePanel.css";
 import { useHistory } from "react-router-dom";
 
 const TablePanel = () => {
@@ -41,13 +42,13 @@ const TablePanel = () => {
           <td>
             {table.reservation_id && (
               <>
-                <button
-                  className="btn btn-danger btn-sm"
+                <div
+                  className="smallButton finish"
                   data-table-id-finish={table.id}
                   onClick={() => seatFinish(table.id, history)}
                 >
                   Finish
-                </button>
+                </div>
                 <div id={table.id} className="finishAlert">
                   <h5>
                     Is this table ready to seat new guests? This cannot be

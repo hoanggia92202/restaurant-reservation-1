@@ -1,0 +1,12 @@
+.smallButton {
+    font-size: .8rem;
+    color: white;
+    padding: 4px;
+    border-radius: 2px;
+    width: 45px;
+    text-align: center;
+}
+
+.finish {
+    background-color: #DC4C64;
+}

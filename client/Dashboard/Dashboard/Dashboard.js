@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { previous, next } from "../../utils/date-time";
-import TablePanel from "../TablePanel";
+import TablePanel from "../TablePanel/TablePanel";
 import ReservationPanel from "../ReservationPanel/ReservationPanel";
 import "./Dashboard.css";
 
